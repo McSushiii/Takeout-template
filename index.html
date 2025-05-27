@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CRISPY KING | Local Chicken Spot</title>
+  <meta name="description" content="Crispy King - The best chicken and chips in town!">
+  <link rel="icon" href="images/chicken1.jpg" type="image/jpeg">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;900&family=Open+Sans:wght@400;600&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bangers&display=swap">
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <!-- AOS for scroll animations -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+</head>
+<body class="bg-white text-dark">
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-orange navbar-shadow sticky-top py-3">
+    <div class="container">
+      <a class="navbar-brand logo text-white" href="index.html">CRISPY KING</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link btn-nav mx-2 active" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link btn-nav mx-2" href="menu.html">Menu</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link btn-nav mx-2" href="order-info.html">Order</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link btn-nav mx-2" href="contact.html">Contact</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link btn-nav mx-2" href="delivery-tracker.html">Delivery Tracker</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION with animated text and parallax -->
+  <section class="hero parallax" style="background: #000;">
+    <div class="container hero-content">
+      <h1 class="hero-title"><span>Crispy.</span> <span>Juicy.</span> <span class="highlight">Irresistible.</span></h1>
+      <p class="hero-subtitle">Handcrafted chicken, fried to golden perfection. Available for delivery or takeout.</p>
+      <a href="order-info.html" class="btn btn-lg">START YOUR ORDER →</a>
+    </div>
+    <div class="hero-overlay"></div>
+  </section>
+  <div class="section-divider"></div>
+  <!-- SPECIALS (ALT SECTION) -->
+  <section class="specials section-alt py-5" style="background: #000;">
+    <div class="container">
+      <h2 class="specials-title text-white mb-4"><i class="fas fa-star"></i> Today's Specials</h2>
+      <div class="specials-grid" id="specialsGrid">
+        <!-- Specials will be injected by JS -->
+      </div>
+    </div>
+  </section>
+  <div class="section-divider"></div>
+
+  <!-- WHY CHOOSE US -->
+  <section class="why-choose-us py-5" data-aos="fade-up">
+    <div class="container text-center">
+      <h2 class="mb-4">Why Choose <span class="highlight">Crispy King</span>?</h2>
+      <div class="row justify-content-center">
+        <div class="col-md-3 col-6 mb-4">
+          <div class="icon-box"><i class="fas fa-drumstick-bite"></i></div>
+          <h5>Fresh Ingredients</h5>
+          <p>Only the best, every day.</p>
+        </div>
+        <div class="col-md-3 col-6 mb-4">
+          <div class="icon-box"><i class="fas fa-fire"></i></div>
+          <h5>Perfectly Fried</h5>
+          <p>Golden, crispy, juicy.</p>
+        </div>
+        <div class="col-md-3 col-6 mb-4">
+          <div class="icon-box"><i class="fas fa-star"></i></div>
+          <h5>Local Favourite</h5>
+          <p>Loved by the community.</p>
+        </div>
+        <div class="col-md-3 col-6 mb-4">
+          <div class="icon-box"><i class="fas fa-bolt"></i></div>
+          <h5>Fast Service</h5>
+          <p>Hot and ready in minutes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS CAROUSEL -->
+  <section class="testimonials py-5 bg-light" data-aos="fade-up">
+    <div class="container">
+      <h2 class="text-center mb-4">What Our Customers Say</h2>
+      <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <blockquote class="blockquote text-center">
+              <p class="mb-4">“Best chicken in town! Always hot, always fresh.”</p>
+              <footer class="blockquote-footer">Aisha K.</footer>
+            </blockquote>
+          </div>
+          <div class="carousel-item">
+            <blockquote class="blockquote text-center">
+              <p class="mb-4">“The family feast is unbeatable value. My kids love it!”</p>
+              <footer class="blockquote-footer">James P.</footer>
+            </blockquote>
+          </div>
+          <div class="carousel-item">
+            <blockquote class="blockquote text-center">
+              <p class="mb-4">“Super fast delivery and the wings are fire!”</p>
+              <footer class="blockquote-footer">Maria S.</footer>
+            </blockquote>
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <div class="container">
+      <h2>READY TO CRUNCH?</h2>
+      <a href="#" class="btn">ORDER NOW →</a>
+    </div>
+  </section>
+
+  <!-- ORDER MODAL -->
+  <div class="modal fade" id="orderModal" tabindex="-1" aria-labelledby="orderModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content glass">
+        <div class="modal-header">
+          <h5 class="modal-title" id="orderModalLabel">Order Online (Demo)</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>Online ordering coming soon! For now, call us or visit in person.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer footer-gradient py-4 mt-5">
+    <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center">
+      <div>
+        <span class="fw-bold">Crispy King</span> &copy; 2025
+      </div>
+      <div class="footer-social">
+        <a href="#" class="text-white mx-2"><i class="fab fa-facebook fa-lg"></i></a>
+        <a href="#" class="text-white mx-2"><i class="fab fa-instagram fa-lg"></i></a>
+        <a href="#" class="text-white mx-2"><i class="fab fa-x-twitter fa-lg"></i></a>
+      </div>
+      <div class="footer-hours">
+        <i class="fas fa-clock"></i> Mon-Sun: 11am - 11pm
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- AOS JS -->
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 1200, once: true });
+    // --- Today's Specials Logic ---
+    // Menu data (copy from order-menu.html, filtered for specials)
+    const menu = [
+      { name: 'WINGS BUCKET', desc: '20 wings, 4 fries & Drink', price: 15.99, img: 'wingsbucket.jpg', category: 'Fried Chicken' },
+      { name: '4 Wings', price: 1.70, img: '4wings.jpg', category: 'Fried Chicken' },
+      { name: '10pcs chicken', desc: 'with chips', price: 11.99, img: '10pcschicken.jpg', category: 'Fried Chicken' },
+      { name: '6 pcs chicken', price: 8.99, img: '6pcschicken.jpg', category: 'Fried Chicken' },
+      { name: '1pc chicken & chips', price: 2.40, img: '1pcchicken&chips.jpg', category: 'Fried Chicken' },
+      { name: '8 wings', price: 3.30, img: '8wings.jpg', category: 'Fried Chicken' },
+      { name: '2pcs chicken & chips', price: 3.70, img: '2pcschicken&chips.jpg', category: 'Fried Chicken' },
+      { name: '3pcs chicken & chips', price: 4.50, img: '3pcschicken&chips.jpg', category: 'Fried Chicken' },
+      { name: '4pcs chicken & chips', price: 5.30, img: '4pcschicken&chips.jpg', category: 'Fried Chicken' },
+      { name: '10 hot wings', price: 3.99, img: '10hotwings.jpg', category: 'Fried Chicken' },
+      { name: '6 BBQ lamb ribs', price: 6.50, img: '6bbqlambribs.jpg', category: 'BBQ' },
+      { name: 'BBQ hot wings 6pcs', price: 3.50, img: 'bbqhotwings6pcs.jpg', category: 'BBQ' },
+      { name: 'BBQ hot wings 10pcs', price: 5.00, img: 'bbqhotwings10pcs.jpg', category: 'BBQ' },
+      { name: '10 BBQ lamb ribs', price: 7.99, img: '10bbqlambribs.jpg', category: 'BBQ' },
+      { name: '4 BBQ lamb ribs', price: 4.50, img: '4bbqlambribs.jpg', category: 'BBQ' },
+      { name: 'Margherita Pizza', desc: 'Classic cheese & tomato', price: 8.99, img: 'margheritapizza.jpg', category: 'Pizza' },
+      { name: 'Pepperoni Pizza', desc: 'Double pepperoni & extra cheese', price: 10.99, img: 'pepperonipizza.jpg', category: 'Pizza' },
+      { name: 'BBQ Pizza', desc: 'BBQ sauce, chicken, onions, peppers', price: 10.99, img: 'bbqpizza.jpg', category: 'Pizza' },
+      { name: 'Vegetarian Pizza', desc: 'Mushrooms, peppers, sweetcorn, tomato', price: 9.99, img: 'VegetarianPizza.jpg', category: 'Pizza' }
+    ];
+    // Exclude categories
+    const specialsPool = menu.filter(item => !['Kids Menu','Drinks','Chips','Burgers'].includes(item.category));
+    // Pick 2 random unique items
+    function getRandomSpecials(arr, n) {
+      const copy = arr.slice();
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+      return copy.slice(0, n);
+    }
+    const specials = getRandomSpecials(specialsPool, 2);
+    // Render specials
+    const specialsGrid = document.getElementById('specialsGrid');
+    specials.forEach(item => {
+      specialsGrid.innerHTML += `
+        <div class="special-card text-center">
+          <div class="food-img" style="background-image: url('images/${item.img}'); background-position: center;" alt="${item.name}"></div>
+          <div class="food-info">
+            <h3 class="text-black">${item.name.toUpperCase()}</h3>
+            ${item.desc ? `<p class="text-black">${item.desc}</p>` : ''}
+            <span class="price text-black">£${item.price.toFixed(2)}</span>
+          </div>
+        </div>
+      `;
+    });
+  </script>
+</body>
+</html>

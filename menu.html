@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Menu | Chicken Spot</title>
+  <meta name="description" content="Crispy King Menu - See our delicious chicken and chips selection!">
+  <link rel="icon" href="images/chicken1.jpg" type="image/jpeg">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;900&family=Open+Sans:wght@400;600&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bangers&display=swap">
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <!-- AOS for scroll animations -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+</head>
+<body class="bg-white text-dark">
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-orange navbar-shadow sticky-top py-3">
+    <div class="container">
+      <a class="navbar-brand logo text-white" href="index.html">CRISPY KING</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link btn-nav mx-2" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link btn-nav mx-2 active" href="menu.html">Menu</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link btn-nav mx-2" href="order-info.html">Order</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link btn-nav mx-2" href="contact.html">Contact</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link btn-nav mx-2" href="delivery-tracker.html">Delivery Tracker</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- HERO -->
+  <section class="hero parallax" style="background: #000; height: 90vh;">
+    <div class="container hero-content">
+      <h1 class="hero-title"><span>Our</span> <span>Menu</span></h1>
+      <p class="hero-subtitle">Family-run. Crispy. Unbeatable.</p>
+      <a href="order-info.html" class="btn btn-lg">ORDER NOW →</a>
+    </div>
+    <div class="hero-overlay"></div>
+  </section>
+  <div class="section-divider"></div>
+
+  <!-- Menu Category Tabs (modern black pills) -->
+  <section class="menu-tabs container my-5 bg-white text-dark">
+    <ul class="nav nav-pills menu-nav-modern justify-content-center mb-4" id="menuTab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link menu-tab-btn active" id="burgers-tab" data-bs-toggle="pill" data-bs-target="#burgers" type="button" role="tab">Burgers</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link menu-tab-btn" id="chips-tab" data-bs-toggle="pill" data-bs-target="#chips" type="button" role="tab">Chips</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link menu-tab-btn" id="chicken-tab" data-bs-toggle="pill" data-bs-target="#chicken" type="button" role="tab">Fried Chicken</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link menu-tab-btn" id="pizza-tab" data-bs-toggle="pill" data-bs-target="#pizza" type="button" role="tab">Pizza</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link menu-tab-btn" id="bbq-tab" data-bs-toggle="pill" data-bs-target="#bbq" type="button" role="tab">BBQ</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link menu-tab-btn" id="kids-tab" data-bs-toggle="pill" data-bs-target="#kids" type="button" role="tab">Kids Menu</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link menu-tab-btn" id="drinks-tab" data-bs-toggle="pill" data-bs-target="#drinks" type="button" role="tab">Drinks</button>
+      </li>
+    </ul>
+    <div class="tab-content" id="menuTabContent">
+      <div class="tab-pane fade show active" id="burgers" role="tabpanel">
+        <div class="row justify-content-center">
+          <div class="col-md-4 mb-4">
+            <div class="menu-card glass">
+              <img src="images/chickenburger.jpg" alt="Chicken Burger" class="menu-img">
+              <h5>Chicken Burger</h5>
+              <span class="price">£2.90</span>
+            </div>
+          </div>
+          <div class="col-md-4 mb-4">
+            <div class="menu-card glass">
+              <img src="images/fishburger.jpg" alt="Fish Burger" class="menu-img">
+              <h5>Fish Burger</h5>
+              <span class="price">£2.50</span>
+            </div>
+          </div>
+          <div class="col-md-4 mb-4">
+            <div class="menu-card glass">
+              <img src="images/cheeseburger.jpg" alt="Cheese Burger" class="menu-img">
+              <h5>Cheese Burger</h5>
+              <span class="price">£2.50</span>
+            </div>
+          </div>
+          <div class="col-md-4 mb-4">
+            <div class="menu-card glass">
+              <img src="images/veggieburger.jpg" alt="Vegie Burger" class="menu-img">
+              <h5>Vegie Burger</h5>
+              <span class="price">£2.50</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="chips" role="tabpanel">
+        <div class="row justify-content-center">
+          <div class="col-md-4 mb-4">
+            <div class="menu-card glass">
+              <img src="images/smallchips.jpg" alt="Small Chips" class="menu-img">
+              <h5>Small Chips</h5>
+              <span class="price">£1.00</span>
+            </div>
+          </div>
+          <div class="col-md-4 mb-4">
+            <div class="menu-card glass">
+              <img src="images/mediumchips.jpg" alt="Medium Chips" class="menu-img">
+              <h5>Medium Chips</h5>
+              <span class="price">£1.50</span>
+            </div>
+          </div>
+          <div class="col-md-4 mb-4">
+            <div class="menu-card glass">
+              <img src="images/largechips.jpg" alt="Large Chips" class="menu-img">
+              <h5>Large Chips</h5>
+              <span class="price">£2.00</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="chicken" role="tabpanel">
+        <div class="row justify-content-center">
+          <div class="col-md-6 mb-4">
+            <div class="menu-card glass">
+              <img src="images/wingsbucket.jpg" alt="WINGS BUCKET" class="menu-img">
+              <h5>WINGS BUCKET</h5>
+              <p>20 wings, 4 fries & Drink</p>
+              <span class="price">£15.99</span>
+            </div>
+          </div>
+          <div class="col-md-6 mb-4">
+            <div class="menu-card glass">
+              <img src="images/4wings.jpg" alt="4 Wings" class="menu-img">
+              <h5>4 Wings</h5>
+              <span class="price">£1.70</span>
+            </div>
+          </div>
+          <div class="col-md-6 mb-4">
+            <div class="menu-card glass">
+              <img src="images/10pcschicken.jpg" alt="10pcs chicken" class="menu-img">
+              <h5>10pcs chicken</h5>
+              <p>with chips</p>
+              <span class="price">£11.99</span>
+            </div>
+          </div>
+          <div class="col-md-6 mb-4">
+            <div class="menu-card glass">
+              <img src="images/6pcschicken.jpg" alt="6 pcs chicken" class="menu-img">
+              <h5>6 pcs chicken</h5>
+              <span class="price">£8.99</span>
+            </div>
+          </div>
+          <div class="col-md-6 mb-4">
+            <div class="menu-card glass">
+              <img src="images/1pcchickenchips.jpg" alt="1pc chicken & chips" class="menu-img">
+              <h5>1pc chicken & chips</h5>
+              <span class="price">£2.40</span>
+            </div>
+          </div>
+          <div class="col-md-6 mb-4">
+            <div class="menu-card glass">
+              <img src="images/8wings.jpg" alt="8 wings" class="menu-img">
+              <h5>8 wings</h5>
+              <span class="price">£3.30</span>
+            </div>
+          </div>
+          <div class="col-md-6 mb-4">
+            <div class="menu-card glass">
+              <img src="images/2pcschickenchips.jpg" alt="2pcs chicken & chips" class="menu-img">
+              <h5>2pcs chicken & chips</h5>
+              <span class="price">£3.70</span>
+            </div>
+          </div>
+          <div class="col-md-6 mb-4">
+            <div class="menu-card glass">
+              <img src="images/3pcschickenchips.jpg" alt="3pcs chicken & chips" class="menu-img">
+              <h5>3pcs chicken & chips</h5>
+              <span class="price">£4.50</span>
+            </div>
+          </div>
+          <div class="col-md-6 mb-4">
+            <div class="menu-card glass">
+              <img src="images/4pcschickenchips.jpg" alt="4pcs chicken & chips" class="menu-img">
+              <h5>4pcs chicken & chips</h5>
+              <span class="price">£5.30</span>
+            </div>
+          </div>
+          <div class="col-md-6 mb-4">
+            <div class="menu-card glass">
+              <img src="images/10hotwings.jpg" alt="10 hot wings" class="menu-img">
+              <h5>10 hot wings</h5>
+              <span class="price">£3.99</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="kids" role="tabpanel">
+        <div class="row justify-content-center">
+          <div class="col-md-4 mb-4">
+            <div class="menu-card glass">
+              <img src="images/1pckidmeal.jpg" alt="1 pc Chicken, fries & drink" class="menu-img">
+              <h5>1 pc Chicken, fries & drink</h5>
+              <span class="price">£2.99</span>
+            </div>
+          </div>
+          <div class="col-md-4 mb-4">
+            <div class="menu-card glass">
+              <img src="images/3hotwingsmeal.jpg" alt="3 hot wings, fries & drink" class="menu-img">
+              <h5>3 hot wings, fries & drink</h5>
+              <span class="price">£2.99</span>
+            </div>
+          </div>
+          <div class="col-md-4 mb-4">
+            <div class="menu-card glass">
+              <img src="images/3nuggetsmeal.jpg" alt="3 nuggets, fries & drink" class="menu-img">
+              <h5>3 nuggets, fries & drink</h5>
+              <span class="price">£2.99</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="bbq" role="tabpanel">
+        <div class="row justify-content-center">
+          <div class="col-md-6 mb-4">
+            <div class="menu-card glass">
+              <img src="images/6bbqlambribs.jpg" alt="6 BBQ lamb ribs" class="menu-img">
+              <h5>6 BBQ lamb ribs</h5>
+              <span class="price">£6.50</span>
+            </div>
+          </div>
+          <div class="col-md-6 mb-4">
+            <div class="menu-card glass">
+              <img src="images/bbqhotwings6pcs.jpg" alt="BBQ hot wings 6pcs" class="menu-img">
+              <h5>BBQ hot wings 6pcs</h5>
+              <span class="price">£3.50</span>
+            </div>
+          </div>
+          <div class="col-md-6 mb-4">
+            <div class="menu-card glass">
+              <img src="images/bbqhotwings10pcs.jpg" alt="BBQ hot wings 10pcs" class="menu-img">
+              <h5>BBQ hot wings 10pcs</h5>
+              <span class="price">£5.00</span>
+            </div>
+          </div>
+          <div class="col-md-6 mb-4">
+            <div class="menu-card glass">
+              <img src="images/10bbqlambribs.jpg" alt="10 BBQ lamb ribs" class="menu-img">
+              <h5>10 BBQ lamb ribs</h5>
+              <span class="price">£7.99</span>
+            </div>
+          </div>
+          <div class="col-md-6 mb-4">
+            <div class="menu-card glass">
+              <img src="images/4bbqlambribs.jpg" alt="4 BBQ lamb ribs" class="menu-img">
+              <h5>4 BBQ lamb ribs</h5>
+              <span class="price">£4.50</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="pizza" role="tabpanel">
+        <div class="row justify-content-center">
+          <div class="col-md-6 mb-4">
+            <div class="menu-card glass">
+              <img src="images/margheritapizza.jpg" alt="Margherita Pizza" class="menu-img">
+              <h5>Margherita Pizza</h5>
+              <ul class="list-unstyled mb-1">
+                <li>Medium 9" <span class="price">£8.99</span></li>
+                <li>Large 12" <span class="price">£11.99</span></li>
+                <li>Super 15" <span class="price">£14.99</span></li>
+              </ul>
+              <p>Classic cheese & tomato</p>
+            </div>
+          </div>
+          <div class="col-md-6 mb-4">
+            <div class="menu-card glass">
+              <img src="images/pepperonipizza.jpg" alt="Pepperoni Pizza" class="menu-img">
+              <h5>Pepperoni Pizza</h5>
+              <ul class="list-unstyled mb-1">
+                <li>Medium 9" <span class="price">£10.99</span></li>
+                <li>Large 12" <span class="price">£13.99</span></li>
+                <li>Super 15" <span class="price">£16.99</span></li>
+              </ul>
+              <p>Double pepperoni & extra cheese</p>
+            </div>
+          </div>
+          <div class="col-md-6 mb-4">
+            <div class="menu-card glass">
+              <img src="images/bbqpizza.jpg" alt="BBQ Pizza" class="menu-img">
+              <h5>BBQ Pizza</h5>
+              <ul class="list-unstyled mb-1">
+                <li>Medium 9" <span class="price">£10.99</span></li>
+                <li>Large 12" <span class="price">£13.99</span></li>
+                <li>Super 15" <span class="price">£16.99</span></li>
+              </ul>
+              <p>BBQ sauce, chicken, onions, peppers</p>
+            </div>
+          </div>
+          <div class="col-md-6 mb-4">
+            <div class="menu-card glass">
+              <img src="images/vegetarianpizza.jpg" alt="Vegetarian Pizza" class="menu-img">
+              <h5>Vegetarian Pizza</h5>
+              <ul class="list-unstyled mb-1">
+                <li>Medium 9" <span class="price">£9.99</span></li>
+                <li>Large 12" <span class="price">£12.99</span></li>
+                <li>Super 15" <span class="price">£15.99</span></li>
+              </ul>
+              <p>Mushrooms, peppers, sweetcorn, tomato</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="drinks" role="tabpanel">
+        <div class="row justify-content-center">
+          <div class="col-12 mb-3"><h5 class="fw-bold">Bottled Drinks (1.5L)</h5></div>
+          <div class="col-md-4 mb-3">
+            <div class="menu-card glass">
+              <img src="images/7up1.5l.jpg" alt="7UP 1.5L" class="menu-img">
+              <h5>7UP 1.5L</h5>
+              <span class="price">£2.70</span>
+            </div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <div class="menu-card glass">
+              <img src="images/coke1.5l.jpg" alt="Coke 1.5L" class="menu-img">
+              <h5>Coke 1.5L</h5>
+              <span class="price">£2.70</span>
+            </div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <div class="menu-card glass">
+              <img src="images/pepsi1.5l.jpg" alt="Pepsi 1.5L" class="menu-img">
+              <h5>Pepsi 1.5L</h5>
+              <span class="price">£2.70</span>
+            </div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <div class="menu-card glass">
+              <img src="images/dietcoke1.5l.jpg" alt="Diet Coke 1.5L" class="menu-img">
+              <h5>Diet Coke 1.5L</h5>
+              <span class="price">£2.70</span>
+            </div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <div class="menu-card glass">
+              <img src="images/tango1.5l.jpg" alt="Tango 1.5L" class="menu-img">
+              <h5>Tango 1.5L</h5>
+              <span class="price">£2.70</span>
+            </div>
+          </div>
+          <div class="col-12 mt-4 mb-3"><h5 class="fw-bold">Canned Drinks</h5></div>
+          <div class="col-md-3 mb-3"><div class="menu-card glass"><h5>7UP Can</h5><span class="price">£0.99</span></div></div>
+          <div class="col-md-3 mb-3"><div class="menu-card glass"><h5>Coke Can</h5><span class="price">£0.99</span></div></div>
+          <div class="col-md-3 mb-3"><div class="menu-card glass"><h5>Diet Pepsi Can</h5><span class="price">£0.99</span></div></div>
+          <div class="col-md-3 mb-3"><div class="menu-card glass"><h5>Dr Pepper Can</h5><span class="price">£0.99</span></div></div>
+          <div class="col-md-3 mb-3"><div class="menu-card glass"><h5>Miranda Orange Can</h5><span class="price">£0.99</span></div></div>
+          <div class="col-md-3 mb-3"><div class="menu-card glass"><h5>Miranda Strawberry Can</h5><span class="price">£0.99</span></div></div>
+          <div class="col-md-3 mb-3"><div class="menu-card glass"><h5>Pepsi Can</h5><span class="price">£0.99</span></div></div>
+          <div class="col-12 mt-4 mb-3"><h5 class="fw-bold">Soft Drinks</h5></div>
+          <div class="col-md-3 mb-3"><div class="menu-card glass"><h5>Pineapple Coconut</h5><span class="price">£0.99</span></div></div>
+          <div class="col-md-3 mb-3"><div class="menu-card glass"><h5>Ribena Blackcurrant</h5><span class="price">£0.99</span></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="section-divider"></div>
+  <!-- TESTIMONIALS (white) -->
+  <section class="testimonials py-5 bg-white text-dark" data-aos="fade-up">
+    <div class="container">
+      <h2 class="text-center mb-4">What Our Customers Say</h2>
+      <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <blockquote class="blockquote text-center">
+              <p class="mb-4">“Best chicken in town! Always hot, always fresh.”</p>
+              <footer class="blockquote-footer">Aisha K.</footer>
+            </blockquote>
+          </div>
+          <div class="carousel-item">
+            <blockquote class="blockquote text-center">
+              <p class="mb-4">“The family feast is unbeatable value. My kids love it!”</p>
+              <footer class="blockquote-footer">James P.</footer>
+            </blockquote>
+          </div>
+          <div class="carousel-item">
+            <blockquote class="blockquote text-center">
+              <p class="mb-4">“Super fast delivery and the wings are fire!”</p>
+              <footer class="blockquote-footer">Maria S.</footer>
+            </blockquote>
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </div>
+  </section>
+  <footer class="footer footer-gradient py-4 mt-5">
+    <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center">
+      <div>
+        <span class="fw-bold">Crispy King</span> &copy; 2025
+      </div>
+      <div class="footer-social">
+        <a href="#" class="text-white mx-2"><i class="fab fa-facebook fa-lg"></i></a>
+        <a href="#" class="text-white mx-2"><i class="fab fa-instagram fa-lg"></i></a>
+        <a href="#" class="text-white mx-2"><i class="fab fa-x-twitter fa-lg"></i></a>
+      </div>
+      <div class="footer-hours">
+        <i class="fas fa-clock"></i> Mon-Sun: 11am - 11pm
+      </div>
+    </div>
+  </footer>
+
+  <!-- ORDER MODAL -->
+  <div class="modal fade" id="orderModal" tabindex="-1" aria-labelledby="orderModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content glass">
+        <div class="modal-header">
+          <h5 class="modal-title" id="orderModalLabel">Order Online (Demo)</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>Online ordering coming soon! For now, call us or visit in person.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- AOS JS -->
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 1200, once: true });
+  </script>
+</body>
+</html>
