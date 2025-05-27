@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout | CRISPY KING</title>
+  <meta name="description" content="Checkout and pay for your Crispy King order.">
+  <link rel="icon" href="images/chicken1.jpg" type="image/jpeg">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;900&family=Open+Sans:wght@400;600&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bangers&display=swap">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+  <style>
+    .payment-btns button {
+      min-width: 180px;
+      margin: 0 10px 10px 0;
+    }
+  </style>
+</head>
+<body class="bg-white text-dark">
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-orange navbar-shadow sticky-top py-3">
+    <div class="container">
+      <a class="navbar-brand logo text-white" href="index.html">CRISPY KING</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link btn-nav mx-2" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link btn-nav mx-2" href="menu.html">Menu</a></li>
+          <li class="nav-item"><a class="nav-link btn-nav mx-2 active" href="order-info.html">Order</a></li>
+          <li class="nav-item"><a class="nav-link btn-nav mx-2" href="contact.html">Contact</a></li>
+          <li class="nav-item"><a class="nav-link btn-nav mx-2" href="delivery-tracker.html">Delivery Tracker</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <section class="hero parallax" style="background: #000;">
+    <div class="container hero-content">
+      <h1 class="hero-title"><span>Checkout</span></h1>
+      <p class="hero-subtitle">Review your order and pay securely.</p>
+    </div>
+    <div class="hero-overlay"></div>
+  </section>
+  <div class="section-divider"></div>
+
+  <!-- CHECKOUT SECTION -->
+  <section class="py-5">
+    <div class="container">
+      <h2 class="text-center mb-4">Order Summary</h2>
+      <div class="row justify-content-center">
+        <div class="col-md-7">
+          <div class="glass p-4 mb-4">
+            <h4>Customer Info</h4>
+            <div id="customerInfo"></div>
+            <hr>
+            <h4>Your Order</h4>
+            <ul class="list-group mb-3" id="orderList"></ul>
+            <div class="d-flex justify-content-between align-items-center">
+              <strong>Total:</strong>
+              <span class="fs-4 text-success" id="orderTotal">£0.00</span>
+            </div>
+          </div>
+          <div class="glass p-4 payment-btns text-center">
+            <h4 class="mb-3">Pay Securely</h4>
+            <button class="btn btn-dark mb-2" id="stripeBtn"><i class="fab fa-cc-stripe me-2"></i>Pay with Stripe</button>
+            <button class="btn btn-primary mb-2" id="paypalBtn"><i class="fab fa-cc-paypal me-2"></i>Pay with PayPal</button>
+            <div class="text-muted mt-3 small">* Payments are in demo mode. No real charges will be made.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer footer-gradient py-4 mt-5">
+    <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center">
+      <div><span class="fw-bold">Crispy King</span> &copy; 2025</div>
+      <div class="footer-social">
+        <a href="#" class="text-white mx-2"><i class="fab fa-facebook fa-lg"></i></a>
+        <a href="#" class="text-white mx-2"><i class="fab fa-instagram fa-lg"></i></a>
+        <a href="#" class="text-white mx-2"><i class="fab fa-x-twitter fa-lg"></i></a>
+      </div>
+      <div class="footer-hours"><i class="fas fa-clock"></i> Mon-Sun: 11am - 11pm</div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 1200, once: true });
+    // Load customer info
+    const name = localStorage.getItem('ck_name') || '';
+    const phone = localStorage.getItem('ck_phone') || '';
+    const address = localStorage.getItem('ck_address') || '';
+    document.getElementById('customerInfo').innerHTML = `
+      <div><strong>Name:</strong> ${name}</div>
+      <div><strong>Phone:</strong> ${phone}</div>
+      <div><strong>Address:</strong> ${address}</div>
+    `;
+    // Load cart
+    const cart = JSON.parse(localStorage.getItem('ck_cart')||'[]');
+    let total = 0;
+    let orderList = '';
+    cart.forEach(item => {
+      orderList += `<li class='list-group-item d-flex justify-content-between align-items-center'>${item.name} <span>x${item.qty}</span> <span>£${(item.price*item.qty).toFixed(2)}</span></li>`;
+      total += item.price * item.qty;
+    });
+    document.getElementById('orderList').innerHTML = orderList || '<li class="list-group-item">No items selected.</li>';
+    document.getElementById('orderTotal').textContent = '£' + total.toFixed(2);
+    // Demo payment buttons
+    document.getElementById('stripeBtn').onclick = function() {
+      alert('Stripe payment demo! (No real charge)');
+      window.location.href = 'delivery-tracker.html';
+    };
+    document.getElementById('paypalBtn').onclick = function() {
+      alert('PayPal payment demo! (No real charge)');
+      window.location.href = 'delivery-tracker.html';
+    };
+  </script>
+</body>
+</html>
