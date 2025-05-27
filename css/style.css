@@ -460,3 +460,22 @@ h1, h2, h3, h4, h5, h6,
   color: #fff !important;
   border-radius: 50px;
 }
+
+/* Ensure all menu item images (.menu-img) have a fixed width and height, are centered, and use object-fit: cover for a uniform appearance. This will prevent cards from stretching and keep the grid clean. */
+.menu-img {
+  width: 110px;
+  height: 110px;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+  margin: 0 auto 1rem auto;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+  border: 3px solid #fff;
+  background: #f8f8f8;
+}
+@media (max-width: 767px) {
+  .menu-img {
+    width: 80px;
+    height: 80px;
+  }
+}
