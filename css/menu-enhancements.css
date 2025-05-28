@@ -1,0 +1,118 @@
+/* Menu Enhancement Styles */
+.menu-filters {
+    position: sticky;
+    top: 80px;
+    z-index: 100;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    margin-bottom: 2rem;
+    transition: box-shadow 0.3s;
+}
+
+.menu-filters:hover {
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.menu-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+}
+
+.menu-item-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.menu-card:hover .menu-item-image {
+    transform: scale(1.05);
+}
+
+.menu-description {
+    font-size: 0.9rem;
+    color: #6c757d;
+    margin: 0.5rem 0;
+    min-height: 40px;
+}
+
+.dietary-info {
+    margin: 0.5rem 0;
+}
+
+.dietary-info .badge {
+    margin-right: 0.5rem;
+    font-weight: 500;
+    padding: 0.4em 0.8em;
+}
+
+.customization-modal .modal-content {
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.customization-options {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.customization-option {
+    padding: 1rem;
+    border-bottom: 1px solid #eee;
+    transition: background-color 0.2s;
+}
+
+.customization-option:hover {
+    background-color: #f8f9fa;
+}
+
+.nutrition-table {
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.nutrition-table th {
+    font-weight: 600;
+    padding: 0.5rem;
+    background-color: #f8f9fa;
+}
+
+.nutrition-table td {
+    padding: 0.5rem;
+    border-top: 1px solid #dee2e6;
+}
+
+.allergen-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.allergen-tag {
+    background-color: #f8f9fa;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    color: #6c757d;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .menu-filters {
+        position: relative;
+        top: 0;
+        margin-bottom: 1rem;
+    }
+
+    .menu-item-image {
+        height: 160px;
+    }
+
+    .menu-description {
+        min-height: auto;
+    }
+}

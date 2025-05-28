@@ -3,18 +3,138 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Our Menu | CRISPY KING</title>
-  <meta name="description" content="Crispy King Menu - See our delicious chicken and chips selection!">
+  <title>Our Menu | CRISPY KING - Best Fried Chicken in East London</title>
+  <meta name="description" content="Explore Crispy King's menu - London's finest fried chicken, burgers, and more. Fresh, crispy, and delivered hot to E1, E2, E3, E5, E8, E9, E14, E15 areas.">
+  <meta name="keywords" content="fried chicken london, chicken delivery east london, chicken and chips, burgers, pizza delivery, halal food">
+  <meta name="geo.region" content="GB-LND">
+  <meta name="geo.placename" content="London">
+  <meta name="geo.position" content="51.5177;-0.0668">
   <link rel="icon" href="images/chicken1.jpg" type="image/jpeg">
+  <!-- Open Graph tags for social sharing -->
+  <meta property="og:title" content="Crispy King Menu - Best Fried Chicken in East London">
+  <meta property="og:description" content="Fresh, crispy chicken delivered hot. Order online for delivery in East London.">
+  <meta property="og:image" content="images/chicken1.jpg">
+  <meta property="og:url" content="https://crispyking.co.uk/menu">
+  <meta property="og:type" content="restaurant.menu">
+  
+  <!-- Schema.org markup for Google -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Restaurant",
+    "name": "Crispy King",
+    "image": "images/chicken1.jpg",
+    "description": "Fresh, crispy chicken delivered hot in East London",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "123 High Street",
+      "addressLocality": "London",
+      "postalCode": "E1 6BT",
+      "addressCountry": "GB"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "51.5177",
+      "longitude": "-0.0668"
+    },
+    "url": "https://crispyking.co.uk",
+    "telephone": "+442071234567",
+    "servesCuisine": ["Fried Chicken", "Fast Food", "Burgers", "Pizza"],
+    "priceRange": "£",
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+      "opens": "11:00",
+      "closes": "23:00"
+    },
+    "acceptsReservations": "false",
+    "delivery": {
+      "@type": "DeliveryMode",
+      "availableArea": ["E1", "E2", "E3", "E5", "E8", "E9", "E14", "E15"]
+    }
+  }
+  </script>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;900&family=Open+Sans:wght@400;600&display=swap">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bangers&display=swap">
-  <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
-  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="css/menu-styles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-  <!-- AOS for scroll animations -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+  <script src="js/menu-items.js" type="module"></script>
+  <script src="js/menu-enhancer.js" type="module"></script>
+  <script src="js/components.js" type="module"></script>
+  <script src="js/contrast.js" type="module"></script>
+  <style>
+    .menu-card {
+      transition: transform 0.3s, box-shadow 0.3s;
+      overflow: hidden;
+    }
+    .menu-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    .menu-card img {
+      transition: transform 0.3s;
+    }
+    .menu-card:hover img {
+      transform: scale(1.05);
+    }
+    .menu-description {
+      font-size: 0.9rem;
+      color: #6c757d;
+      margin-bottom: 0.5rem;
+    }
+    .dietary-info .badge {
+      font-size: 0.75rem;
+    }
+    .customize-btn {
+      position: absolute;
+      bottom: 1rem;
+      right: 1rem;
+      background: rgba(255,255,255,0.9);
+      border-radius: 50%;
+      width: 35px;
+      height: 35px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: transform 0.2s;
+      opacity: 0;
+    }
+    .menu-card:hover .customize-btn {
+      opacity: 1;
+    }
+    .customize-btn:hover {
+      transform: rotate(90deg);
+    }
+    .nutritional-info {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: rgba(255,255,255,0.9);
+      border-radius: 50%;
+      width: 35px;
+      height: 35px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: transform 0.2s;
+      opacity: 0;
+    }
+    .menu-card:hover .nutritional-info {
+      opacity: 1;
+    }
+    .filter-section {
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      border-radius: 15px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+  </style>
 </head>
 <body class="bg-white text-dark">
   <!-- NAVBAR -->
@@ -56,335 +176,262 @@
   </section>
   <div class="section-divider"></div>
 
-  <!-- Menu Category Tabs (modern black pills) -->
-  <section class="menu-tabs container my-5 bg-white text-dark">
+  <!-- MENU SECTION -->
+<section class="menu-section py-5">
+    <div class="container">
+        <h2 class="text-center mb-4">Our Menu</h2>
+        <p class="text-center mb-5">Explore our delicious selection of dishes, from crispy fried chicken to gourmet burgers</p>
+        
+        <!-- Menu filters will be inserted here by JavaScript -->
+        
+        <div class="row g-4" id="menuContainer">
+            <!-- Menu cards will be populated here -->
+        </div>
+    </div>
+</section>
+
+  <!-- MENU TABS -->
+  <section class="menu-tabs container my-5">
     <ul class="nav nav-pills menu-nav-modern justify-content-center mb-4" id="menuTab" role="tablist">
       <li class="nav-item" role="presentation">
         <button class="nav-link menu-tab-btn active" id="burgers-tab" data-bs-toggle="pill" data-bs-target="#burgers" type="button" role="tab">Burgers</button>
       </li>
       <li class="nav-item" role="presentation">
-        <button class="nav-link menu-tab-btn" id="chips-tab" data-bs-toggle="pill" data-bs-target="#chips" type="button" role="tab">Chips</button>
-      </li>
-      <li class="nav-item" role="presentation">
         <button class="nav-link menu-tab-btn" id="chicken-tab" data-bs-toggle="pill" data-bs-target="#chicken" type="button" role="tab">Fried Chicken</button>
       </li>
       <li class="nav-item" role="presentation">
-        <button class="nav-link menu-tab-btn" id="pizza-tab" data-bs-toggle="pill" data-bs-target="#pizza" type="button" role="tab">Pizza</button>
+        <button class="nav-link menu-tab-btn" id="chips-tab" data-bs-toggle="pill" data-bs-target="#chips" type="button" role="tab">Chips</button>
       </li>
       <li class="nav-item" role="presentation">
         <button class="nav-link menu-tab-btn" id="bbq-tab" data-bs-toggle="pill" data-bs-target="#bbq" type="button" role="tab">BBQ</button>
       </li>
       <li class="nav-item" role="presentation">
-        <button class="nav-link menu-tab-btn" id="kids-tab" data-bs-toggle="pill" data-bs-target="#kids" type="button" role="tab">Kids Menu</button>
+        <button class="nav-link menu-tab-btn" id="pizza-tab" data-bs-toggle="pill" data-bs-target="#pizza" type="button" role="tab">Pizza</button>
       </li>
       <li class="nav-item" role="presentation">
         <button class="nav-link menu-tab-btn" id="drinks-tab" data-bs-toggle="pill" data-bs-target="#drinks" type="button" role="tab">Drinks</button>
       </li>
     </ul>
+
     <div class="tab-content" id="menuTabContent">
+      <!-- BURGERS -->
       <div class="tab-pane fade show active" id="burgers" role="tabpanel">
         <div class="row justify-content-center">
           <div class="col-md-4 mb-4">
-            <div class="menu-card glass">
-              <img src="images/chickenburger.jpg" alt="Chicken Burger" class="menu-img">
-              <h5>Chicken Burger</h5>
-              <span class="price">£2.90</span>
+            <div class="menu-card glass" data-aos="fade-up">
+              <img src="images/chickenburger.jpg" alt="Chicken Burger" class="img-fluid rounded-top menu-item-image">
+              <div class="p-3">
+                <h5>Chicken Burger</h5>
+                <p>Fresh chicken fillet with lettuce and mayo</p>
+                <span class="price">£2.90</span>
+              </div>
             </div>
           </div>
           <div class="col-md-4 mb-4">
-            <div class="menu-card glass">
-              <img src="images/fishburger.jpg" alt="Fish Burger" class="menu-img">
-              <h5>Fish Burger</h5>
-              <span class="price">£2.50</span>
+            <div class="menu-card glass" data-aos="fade-up">
+              <img src="images/fishburger.jpg" alt="Fish Burger" class="img-fluid rounded-top menu-item-image">
+              <div class="p-3">
+                <h5>Fish Burger</h5>
+                <p>Fresh fish fillet with tartare sauce</p>
+                <span class="price">£2.50</span>
+              </div>
             </div>
           </div>
           <div class="col-md-4 mb-4">
-            <div class="menu-card glass">
-              <img src="../images/cheeseburger.jpg" alt="Cheese Burger" class="menu-img">
-              <h5>Cheese Burger</h5>
-              <span class="price">£2.50</span>
-            </div>
-          </div>
-          <div class="col-md-4 mb-4">
-            <div class="menu-card glass">
-              <img src="../images/veggieburger.jpg" alt="Vegie Burger" class="menu-img">
-              <h5>Vegie Burger</h5>
-              <span class="price">£2.50</span>
+            <div class="menu-card glass" data-aos="fade-up">
+              <img src="images/cheeseburger.jpg" alt="Cheese Burger" class="img-fluid rounded-top menu-item-image">
+              <div class="p-3">
+                <h5>Cheese Burger</h5>
+                <p>Beef patty with cheese and sauce</p>
+                <span class="price">£2.50</span>
+              </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="tab-pane fade" id="chips" role="tabpanel">
-        <div class="row justify-content-center">
-          <div class="col-md-4 mb-4">
-            <div class="menu-card glass">
-              <img src="../images/smallchips.jpg" alt="Small Chips" class="menu-img">
-              <h5>Small Chips</h5>
-              <span class="price">£1.00</span>
-            </div>
-          </div>
-          <div class="col-md-4 mb-4">
-            <div class="menu-card glass">
-              <img src="../images/mediumchips.jpg" alt="Medium Chips" class="menu-img">
-              <h5>Medium Chips</h5>
-              <span class="price">£1.50</span>
-            </div>
-          </div>
-          <div class="col-md-4 mb-4">
-            <div class="menu-card glass">
-              <img src="../images/largechips.jpg" alt="Large Chips" class="menu-img">
-              <h5>Large Chips</h5>
-              <span class="price">£2.00</span>
-            </div>
-          </div>
-        </div>
-      </div>
+
+      <!-- CHICKEN -->
       <div class="tab-pane fade" id="chicken" role="tabpanel">
         <div class="row justify-content-center">
           <div class="col-md-4 mb-4">
-            <div class="menu-card glass">
-              <img src="../images/wingsbucket.jpg" alt="WINGS BUCKET" class="menu-img">
-              <h5>WINGS BUCKET</h5>
-              <p>20 wings, 4 fries & Drink</p>
-              <span class="price">£15.99</span>
+            <div class="menu-card glass" data-aos="fade-up">
+              <img src="images/friedchicken.jpg" alt="Fried Chicken" class="img-fluid rounded-top menu-item-image">
+              <div class="p-3">
+                <h5>Fried Chicken</h5>
+                <p>Our signature crispy fried chicken</p>
+                <span class="price">£3.50</span>
+              </div>
             </div>
           </div>
           <div class="col-md-4 mb-4">
-            <div class="menu-card glass">
-              <img src="../images/4wings.jpg" alt="4 Wings" class="menu-img">
-              <h5>4 Wings</h5>
-              <span class="price">£1.70</span>
+            <div class="menu-card glass" data-aos="fade-up">
+              <img src="images/spicychicken.jpg" alt="Spicy Chicken" class="img-fluid rounded-top menu-item-image">
+              <div class="p-3">
+                <h5>Spicy Chicken</h5>
+                <p>Extra spicy fried chicken for the brave</p>
+                <span class="price">£3.70</span>
+              </div>
             </div>
           </div>
           <div class="col-md-4 mb-4">
-            <div class="menu-card glass">
-              <img src="../images/10pcschicken.jpg" alt="10pcs chicken" class="menu-img">
-              <h5>10pcs chicken</h5>
-              <p>with chips</p>
-              <span class="price">£11.99</span>
-            </div>
-          </div>
-          <div class="col-md-4 mb-4">
-            <div class="menu-card glass">
-              <img src="../images/6pcschicken.jpg" alt="6 pcs chicken" class="menu-img">
-              <h5>6 pcs chicken</h5>
-              <span class="price">£8.99</span>
-            </div>
-          </div>
-          <div class="col-md-4 mb-4">
-            <div class="menu-card glass">
-              <img src="../images/1pcchicken&chips.jpg" alt="1pc chicken & chips" class="menu-img">
-              <h5>1pc chicken & chips</h5>
-              <span class="price">£2.40</span>
-            </div>
-          </div>
-          <div class="col-md-4 mb-4">
-            <div class="menu-card glass">
-              <img src="../images/8wings.jpg" alt="8 wings" class="menu-img">
-              <h5>8 wings</h5>
-              <span class="price">£3.30</span>
-            </div>
-          </div>
-          <div class="col-md-4 mb-4">
-            <div class="menu-card glass">
-              <img src="../images/2pcschicken&chips.jpg" alt="2pcs chicken & chips" class="menu-img">
-              <h5>2pcs chicken & chips</h5>
-              <span class="price">£3.70</span>
-            </div>
-          </div>
-          <div class="col-md-4 mb-4">
-            <div class="menu-card glass">
-              <img src="../images/3pcschicken&chips.jpg" alt="3pcs chicken & chips" class="menu-img">
-              <h5>3pcs chicken & chips</h5>
-              <span class="price">£4.50</span>
-            </div>
-          </div>
-          <div class="col-md-4 mb-4">
-            <div class="menu-card glass">
-              <img src="../images/4pcschicken&chips.jpg" alt="4pcs chicken & chips" class="menu-img">
-              <h5>4pcs chicken & chips</h5>
-              <span class="price">£5.30</span>
-            </div>
-          </div>
-          <div class="col-md-4 mb-4">
-            <div class="menu-card glass">
-              <img src="../images/10hotwings.jpg" alt="10 hot wings" class="menu-img">
-              <h5>10 hot wings</h5>
-              <span class="price">£3.99</span>
+            <div class="menu-card glass" data-aos="fade-up">
+              <img src="images/chickenwings.jpg" alt="Chicken Wings" class="img-fluid rounded-top menu-item-image">
+              <div class="p-3">
+                <h5>Chicken Wings</h5>
+                <p>Crispy wings with your choice of sauce</p>
+                <span class="price">£4.00</span>
+              </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="tab-pane fade" id="kids" role="tabpanel">
+
+      <!-- CHIPS -->
+      <div class="tab-pane fade" id="chips" role="tabpanel">
         <div class="row justify-content-center">
           <div class="col-md-4 mb-4">
-            <div class="menu-card glass">
-              <img src="images/1pcChicken,fries&drink.jpg" alt="1 pc Chicken, fries & drink" class="menu-img">
-              <h5>1 pc Chicken, fries & drink</h5>
-              <span class="price">£2.99</span>
+            <div class="menu-card glass" data-aos="fade-up">
+              <img src="images/smallchips.jpg" alt="Small Chips" class="img-fluid rounded-top menu-item-image">
+              <div class="p-3">
+                <h5>Small Chips</h5>
+                <p>Golden crispy fries</p>
+                <span class="price">£1.00</span>
+              </div>
             </div>
           </div>
           <div class="col-md-4 mb-4">
-            <div class="menu-card glass">
-              <img src="images/3hotwings,fries&drink.jpg" alt="3 hot wings, fries & drink" class="menu-img">
-              <h5>3 hot wings, fries & drink</h5>
-              <span class="price">£2.99</span>
+            <div class="menu-card glass" data-aos="fade-up">
+              <img src="images/mediumchips.jpg" alt="Medium Chips" class="img-fluid rounded-top menu-item-image">
+              <div class="p-3">
+                <h5>Medium Chips</h5>
+                <p>Perfect portion of crispy fries</p>
+                <span class="price">£1.50</span>
+              </div>
             </div>
           </div>
           <div class="col-md-4 mb-4">
-            <div class="menu-card glass">
-              <img src="images/3nuggets,fries&drink.jpg" alt="3 nuggets, fries & drink" class="menu-img">
-              <h5>3 nuggets, fries & drink</h5>
-              <span class="price">£2.99</span>
+            <div class="menu-card glass" data-aos="fade-up">
+              <img src="images/largechips.jpg" alt="Large Chips" class="img-fluid rounded-top menu-item-image">
+              <div class="p-3">
+                <h5>Large Chips</h5>
+                <p>Large portion of golden fries</p>
+                <span class="price">£2.00</span>
+              </div>
             </div>
           </div>
         </div>
       </div>
+
+      <!-- BBQ -->
       <div class="tab-pane fade" id="bbq" role="tabpanel">
         <div class="row justify-content-center">
           <div class="col-md-4 mb-4">
-            <div class="menu-card glass">
-              <img src="../images/6bbqlambribs.jpg" alt="6 BBQ lamb ribs" class="menu-img">
-              <h5>6 BBQ lamb ribs</h5>
-              <span class="price">£6.50</span>
+            <div class="menu-card glass" data-aos="fade-up">
+              <img src="images/bbqribs.jpg" alt="BBQ Ribs" class="img-fluid rounded-top menu-item-image">
+              <div class="p-3">
+                <h5>BBQ Ribs</h5>
+                <p>Tender ribs smothered in BBQ sauce</p>
+                <span class="price">£5.00</span>
+              </div>
             </div>
           </div>
           <div class="col-md-4 mb-4">
-            <div class="menu-card glass">
-              <img src="../images/bbqhotwings6pcs.jpg" alt="BBQ hot wings 6pcs" class="menu-img">
-              <h5>BBQ hot wings 6pcs</h5>
-              <span class="price">£3.50</span>
+            <div class="menu-card glass" data-aos="fade-up">
+              <img src="images/chickenbbq.jpg" alt="BBQ Chicken" class="img-fluid rounded-top menu-item-image">
+              <div class="p-3">
+                <h5>BBQ Chicken</h5>
+                <p>Grilled chicken with a smoky BBQ glaze</p>
+                <span class="price">£4.50</span>
+              </div>
             </div>
           </div>
           <div class="col-md-4 mb-4">
-            <div class="menu-card glass">
-              <img src="../images/bbqhotwings10pcs.jpg" alt="BBQ hot wings 10pcs" class="menu-img">
-              <h5>BBQ hot wings 10pcs</h5>
-              <span class="price">£5.00</span>
-            </div>
-          </div>
-          <div class="col-md-4 mb-4">
-            <div class="menu-card glass">
-              <img src="../images/10bbqlambribs.jpg" alt="10 BBQ lamb ribs" class="menu-img">
-              <h5>10 BBQ lamb ribs</h5>
-              <span class="price">£7.99</span>
-            </div>
-          </div>
-          <div class="col-md-4 mb-4">
-            <div class="menu-card glass">
-              <img src="../images/4bbqlambribs.jpg" alt="4 BBQ lamb ribs" class="menu-img">
-              <h5>4 BBQ lamb ribs</h5>
-              <span class="price">£4.50</span>
+            <div class="menu-card glass" data-aos="fade-up">
+              <img src="images/vegetablebbq.jpg" alt="BBQ Vegetables" class="img-fluid rounded-top menu-item-image">
+              <div class="p-3">
+                <h5>BBQ Vegetables</h5>
+                <p>Seasonal vegetables grilled to perfection</p>
+                <span class="price">£3.50</span>
+              </div>
             </div>
           </div>
         </div>
       </div>
+
+      <!-- PIZZA -->
       <div class="tab-pane fade" id="pizza" role="tabpanel">
         <div class="row justify-content-center">
           <div class="col-md-4 mb-4">
-            <div class="menu-card glass">
-              <img src="../images/margheritapizza.jpg" alt="Margherita Pizza" class="menu-img">
-              <h5>Margherita Pizza</h5>
-              <ul class="list-unstyled mb-1">
-                <li>Medium 9" <span class="price">£8.99</span></li>
-                <li>Large 12" <span class="price">£11.99</span></li>
-                <li>Super 15" <span class="price">£14.99</span></li>
-              </ul>
-              <p>Classic cheese & tomato</p>
+            <div class="menu-card glass" data-aos="fade-up">
+              <img src="images/margaretapizza.jpg" alt="Margherita Pizza" class="img-fluid rounded-top menu-item-image">
+              <div class="p-3">
+                <h5>Margherita Pizza</h5>
+                <p>Classic pizza with tomato and mozzarella</p>
+                <span class="price">£8.00</span>
+              </div>
             </div>
           </div>
           <div class="col-md-4 mb-4">
-            <div class="menu-card glass">
-              <img src="../images/pepperonipizza.jpg" alt="Pepperoni Pizza" class="menu-img">
-              <h5>Pepperoni Pizza</h5>
-              <ul class="list-unstyled mb-1">
-                <li>Medium 9" <span class="price">£10.99</span></li>
-                <li>Large 12" <span class="price">£13.99</span></li>
-                <li>Super 15" <span class="price">£16.99</span></li>
-              </ul>
-              <p>Double pepperoni & extra cheese</p>
+            <div class="menu-card glass" data-aos="fade-up">
+              <img src="images/pepperonipizza.jpg" alt="Pepperoni Pizza" class="img-fluid rounded-top menu-item-image">
+              <div class="p-3">
+                <h5>Pepperoni Pizza</h5>
+                <p>Spicy pepperoni with mozzarella and tomato</p>
+                <span class="price">£9.00</span>
+              </div>
             </div>
           </div>
           <div class="col-md-4 mb-4">
-            <div class="menu-card glass">
-              <img src="../images/bbqpizza.jpg" alt="BBQ Pizza" class="menu-img">
-              <h5>BBQ Pizza</h5>
-              <ul class="list-unstyled mb-1">
-                <li>Medium 9" <span class="price">£10.99</span></li>
-                <li>Large 12" <span class="price">£13.99</span></li>
-                <li>Super 15" <span class="price">£16.99</span></li>
-              </ul>
-              <p>BBQ sauce, chicken, onions, peppers</p>
-            </div>
-          </div>
-          <div class="col-md-4 mb-4">
-            <div class="menu-card glass">
-              <img src="../images/VegetarianPizza.jpg" alt="Vegetarian Pizza" class="menu-img">
-              <h5>Vegetarian Pizza</h5>
-              <ul class="list-unstyled mb-1">
-                <li>Medium 9" <span class="price">£9.99</span></li>
-                <li>Large 12" <span class="price">£12.99</span></li>
-                <li>Super 15" <span class="price">£15.99</span></li>
-              </ul>
-              <p>Mushrooms, peppers, sweetcorn, tomato</p>
+            <div class="menu-card glass" data-aos="fade-up">
+              <img src="images/vegetarianpizza.jpg" alt="Vegetarian Pizza" class="img-fluid rounded-top menu-item-image">
+              <div class="p-3">
+                <h5>Vegetarian Pizza</h5>
+                <p>Loaded with fresh vegetables and cheese</p>
+                <span class="price">£8.50</span>
+              </div>
             </div>
           </div>
         </div>
       </div>
+
+      <!-- DRINKS -->
       <div class="tab-pane fade" id="drinks" role="tabpanel">
         <div class="row justify-content-center">
-          <div class="col-12 mb-3"><h5 class="fw-bold">Bottled Drinks (1.5L)</h5></div>
           <div class="col-md-4 mb-4">
-            <div class="menu-card glass">
-              <img src="../images/7up1.5l.jpg" alt="7UP 1.5L" class="menu-img">
-              <h5>7UP 1.5L</h5>
-              <span class="price">£2.70</span>
+            <div class="menu-card glass" data-aos="fade-up">
+              <img src="images/cocacola.jpg" alt="Coca Cola" class="img-fluid rounded-top menu-item-image">
+              <div class="p-3">
+                <h5>Coca Cola</h5>
+                <p>Classic fizzy drink</p>
+                <span class="price">£1.00</span>
+              </div>
             </div>
           </div>
           <div class="col-md-4 mb-4">
-            <div class="menu-card glass">
-              <img src="../images/coke1.5l.jpg" alt="Coke 1.5L" class="menu-img">
-              <h5>Coke 1.5L</h5>
-              <span class="price">£2.70</span>
+            <div class="menu-card glass" data-aos="fade-up">
+              <img src="images/sprite.jpg" alt="Sprite" class="img-fluid rounded-top menu-item-image">
+              <div class="p-3">
+                <h5>Sprite</h5>
+                <p>Refreshing lemon-lime soda</p>
+                <span class="price">£1.00</span>
+              </div>
             </div>
           </div>
           <div class="col-md-4 mb-4">
-            <div class="menu-card glass">
-              <img src="../images/pepsi1.5l.jpg" alt="Pepsi 1.5L" class="menu-img">
-              <h5>Pepsi 1.5L</h5>
-              <span class="price">£2.70</span>
+            <div class="menu-card glass" data-aos="fade-up">
+              <img src="images/fanta.jpg" alt="Fanta" class="img-fluid rounded-top menu-item-image">
+              <div class="p-3">
+                <h5>Fanta</h5>
+                <p>Fizzy orange flavored drink</p>
+                <span class="price">£1.00</span>
+              </div>
             </div>
           </div>
-          <div class="col-md-4 mb-4">
-            <div class="menu-card glass">
-              <img src="../images/dietcoke1.5l.jpg" alt="Diet Coke 1.5L" class="menu-img">
-              <h5>Diet Coke 1.5L</h5>
-              <span class="price">£2.70</span>
-            </div>
-          </div>
-          <div class="col-md-4 mb-4">
-            <div class="menu-card glass">
-              <img src="../images/tango1.5l.jpg" alt="Tango 1.5L" class="menu-img">
-              <h5>Tango 1.5L</h5>
-              <span class="price">£2.70</span>
-            </div>
-          </div>
-          <div class="col-12 mt-4 mb-3"><h5 class="fw-bold">Canned Drinks</h5></div>
-          <div class="col-md-4 mb-4"><div class="menu-card glass"><img src="images/7upcan.jpg" alt="7UP Can" class="menu-img"><h5>7UP Can</h5><span class="price">£0.99</span></div></div>
-          <div class="col-md-4 mb-4"><div class="menu-card glass"><img src="images/cokecan.jpg" alt="Coke Can" class="menu-img"><h5>Coke Can</h5><span class="price">£0.99</span></div></div>
-          <div class="col-md-4 mb-4"><div class="menu-card glass"><img src="images/dietpepsican.jpg" alt="Diet Pepsi Can" class="menu-img"><h5>Diet Pepsi Can</h5><span class="price">£0.99</span></div></div>
-          <div class="col-md-4 mb-4"><div class="menu-card glass"><img src="images/drpeppercan.jpg" alt="Dr Pepper Can" class="menu-img"><h5>Dr Pepper Can</h5><span class="price">£0.99</span></div></div>
-          <div class="col-md-4 mb-4"><div class="menu-card glass"><img src="images/mirandaorangecan.jpg" alt="Miranda Orange Can" class="menu-img"><h5>Miranda Orange Can</h5><span class="price">£0.99</span></div></div>
-          <div class="col-md-4 mb-4"><div class="menu-card glass"><img src="images/mirandastrawberrycan.jpg" alt="Miranda Strawberry Can" class="menu-img"><h5>Miranda Strawberry Can</h5><span class="price">£0.99</span></div></div>
-          <div class="col-md-4 mb-4"><div class="menu-card glass"><img src="images/pepsican.jpg" alt="Pepsi Can" class="menu-img"><h5>Pepsi Can</h5><span class="price">£0.99</span></div></div>
-          <div class="col-12 mt-4 mb-3"><h5 class="fw-bold">Soft Drinks</h5></div>
-          <div class="col-md-4 mb-4"><div class="menu-card glass"><img src="images/pineapplecoconut.jpg" alt="Pineapple Coconut" class="menu-img"><h5>Pineapple Coconut</h5><span class="price">£0.99</span></div></div>
-          <div class="col-md-4 mb-4"><div class="menu-card glass"><img src="images/RibenaBlackcurrant.jpg" alt="Ribena Blackcurrant" class="menu-img"><h5>Ribena Blackcurrant</h5><span class="price">£0.99</span></div></div>
         </div>
       </div>
     </div>
   </section>
-  <div class="section-divider"></div>
+
   <!-- TESTIMONIALS (white) -->
   <section class="testimonials py-5 bg-white text-dark" data-aos="fade-up">
     <div class="container">
@@ -421,18 +468,63 @@
       </div>
     </div>
   </section>
-  <footer class="footer footer-gradient py-4 mt-5">
-    <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center">
-      <div>
-        <span class="fw-bold">Crispy King</span> &copy; 2025
+  <footer class="footer footer-gradient py-5">
+    <div class="container">
+      <div class="row">
+        <!-- Contact Info -->
+        <div class="col-lg-4 mb-4">
+          <h5 class="text-white mb-3">Contact Us</h5>
+          <ul class="list-unstyled footer-contact">
+            <li><i class="fas fa-phone me-2"></i><a href="tel:+442071234567" class="text-white">020 7123 4567</a></li>
+            <li><i class="fas fa-map-marker-alt me-2"></i>123 High Street, London E1 6BT</li>
+            <li><i class="fas fa-envelope me-2"></i><a href="mailto:order@crispyking.co.uk" class="text-white">order@crispyking.co.uk</a></li>
+            <li><i class="fas fa-clock me-2"></i>Open 7 Days: 11am - 11pm</li>
+          </ul>
+        </div>
+        
+        <!-- Delivery Areas -->
+        <div class="col-lg-4 mb-4">
+          <h5 class="text-white mb-3">We Deliver To</h5>
+          <div class="row">
+            <div class="col-6">
+              <ul class="list-unstyled footer-delivery">
+                <li><i class="fas fa-check me-2"></i>E1 - Whitechapel</li>
+                <li><i class="fas fa-check me-2"></i>E2 - Bethnal Green</li>
+                <li><i class="fas fa-check me-2"></i>E3 - Bow</li>
+                <li><i class="fas fa-check me-2"></i>E5 - Clapton</li>
+              </ul>
+            </div>
+            <div class="col-6">
+              <ul class="list-unstyled footer-delivery">
+                <li><i class="fas fa-check me-2"></i>E8 - Hackney</li>
+                <li><i class="fas fa-check me-2"></i>E9 - Hackney</li>
+                <li><i class="fas fa-check me-2"></i>E14 - Poplar</li>
+                <li><i class="fas fa-check me-2"></i>E15 - Stratford</li>
+              </ul>
+            </div>
+          </div>
+          <p class="text-white-50 small mt-2">Free delivery on orders over £20</p>
+        </div>
+        
+        <!-- Social & Newsletter -->
+        <div class="col-lg-4 mb-4">
+          <h5 class="text-white mb-3">Stay Connected</h5>
+          <div class="footer-social mb-4">
+            <a href="https://facebook.com/crispyking" class="text-white mx-2" aria-label="Facebook"><i class="fab fa-facebook fa-2x"></i></a>
+            <a href="https://instagram.com/crispyking" class="text-white mx-2" aria-label="Instagram"><i class="fab fa-instagram fa-2x"></i></a>
+            <a href="https://twitter.com/crispyking" class="text-white mx-2" aria-label="Twitter"><i class="fab fa-x-twitter fa-2x"></i></a>
+          </div>
+          <div class="newsletter-signup">
+            <h6 class="text-white mb-2">Subscribe for Offers</h6>
+            <form class="d-flex" id="newsletterForm">
+              <input type="email" class="form-control me-2" placeholder="Your email" aria-label="Newsletter signup">
+              <button class="btn btn-light" type="submit">Sign Up</button>
+            </form>
+          </div>
+        </div>
       </div>
-      <div class="footer-social">
-        <a href="#" class="text-white mx-2"><i class="fab fa-facebook fa-lg"></i></a>
-        <a href="#" class="text-white mx-2"><i class="fab fa-instagram fa-lg"></i></a>
-        <a href="#" class="text-white mx-2"><i class="fab fa-x-twitter fa-lg"></i></a>
-      </div>
-      <div class="footer-hours">
-        <i class="fas fa-clock"></i> Mon-Sun: 11am - 11pm
+      <div class="border-top border-white-50 pt-3 mt-3 text-center">
+        <span class="text-white">&copy; 2025 Crispy King. All rights reserved.</span>
       </div>
     </div>
   </footer>
@@ -455,8 +547,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <!-- AOS JS -->
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-  <script src="../js/script.js"></script>
-  <script src="../js/cart.js"></script>
+  <script src="js/menu-init.js" type="module"></script>
   <script>
     AOS.init({ duration: 1200, once: true });
   </script>

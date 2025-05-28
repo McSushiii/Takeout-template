@@ -1,0 +1,265 @@
+/* Menu Enhancements Styles */
+.menu-filters {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 80px;
+    z-index: 1020;
+    transition: all 0.3s ease;
+}
+
+.menu-filters:hover {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.active-filters {
+    min-height: 40px;
+    padding: 0.5rem 0;
+}
+
+.menu-card {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.menu-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        to bottom,
+        transparent 60%,
+        rgba(0, 0, 0, 0.7)
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1;
+}
+
+.menu-card:hover::before {
+    opacity: 1;
+}
+
+.menu-item-image {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.menu-card:hover .menu-item-image {
+    transform: scale(1.05);
+}
+
+.menu-info {
+    position: relative;
+    z-index: 2;
+    padding: 1.5rem;
+}
+
+.menu-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.menu-description {
+    font-size: 0.9rem;
+    color: #6c757d;
+    margin-bottom: 1rem;
+}
+
+.menu-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.price {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--primary);
+}
+
+.dietary-badges {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.badge {
+    padding: 0.5em 1em;
+    border-radius: 20px;
+    font-weight: 500;
+}
+
+.customize-btn,
+.nutrition-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: white;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    opacity: 0;
+    z-index: 3;
+}
+
+.customize-btn {
+    bottom: 1rem;
+    right: 1rem;
+}
+
+.nutrition-btn {
+    top: 1rem;
+    right: 1rem;
+}
+
+.menu-card:hover .customize-btn,
+.menu-card:hover .nutrition-btn {
+    opacity: 1;
+}
+
+.customize-btn:hover,
+.nutrition-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Animations */
+.fade-in {
+    animation: fadeIn 0.5s ease forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Customization Modal Styles */
+.customization-modal .modal-content {
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.option-group {
+    margin-bottom: 1.5rem;
+}
+
+.option-group-title {
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--primary);
+}
+
+.option-item {
+    padding: 0.75rem;
+    border-radius: 10px;
+    background: #f8f9fa;
+    margin-bottom: 0.5rem;
+    transition: all 0.2s ease;
+}
+
+.option-item:hover {
+    background: #e9ecef;
+}
+
+/* Nutrition Modal Styles */
+.nutrition-table {
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.nutrition-table th {
+    background: #f8f9fa;
+    padding: 0.75rem;
+    font-weight: 600;
+}
+
+.nutrition-table td {
+    padding: 0.75rem;
+    border-top: 1px solid #dee2e6;
+}
+
+.allergen-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.allergen-tag {
+    background: #f8f9fa;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    color: #6c757d;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .menu-filters {
+        position: static;
+        margin-bottom: 1rem;
+        padding: 1rem;
+    }
+
+    .menu-item-image {
+        height: 200px;
+    }
+
+    .customize-btn,
+    .nutrition-btn {
+        opacity: 1;
+    }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+    .menu-filters {
+        background: rgba(33, 37, 41, 0.95);
+    }
+
+    .menu-card {
+        background: #2b3035;
+    }
+
+    .menu-description {
+        color: #adb5bd;
+    }
+
+    .option-item {
+        background: #343a40;
+    }
+
+    .option-item:hover {
+        background: #495057;
+    }
+
+    .nutrition-table th {
+        background: #343a40;
+    }
+
+    .allergen-tag {
+        background: #343a40;
+        color: #adb5bd;
+    }
+}

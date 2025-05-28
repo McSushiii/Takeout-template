@@ -3,201 +3,170 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Delivery Tracker | CRISPY KING</title>
-  <meta name="description" content="Track your Crispy King order in real time!">
+  <title>Track Your Order | CRISPY KING</title>
+  <meta name="description" content="Track your Crispy King order in real-time. Know exactly when your delicious food will arrive.">
   <link rel="icon" href="images/chicken1.jpg" type="image/jpeg">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;900&family=Open+Sans:wght@400;600&display=swap">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bangers&display=swap">
-  <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
-  <!-- Font Awesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-  <!-- AOS for scroll animations -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+  <script src="js/notifications.js" type="module"></script>
+  <script src="js/delivery-tracker.js" type="module"></script>
+  <script src="js/page-init.js" type="module"></script>
 </head>
 <body class="bg-white text-dark">
-  <!-- NAVBAR -->
-  <nav class="navbar navbar-expand-lg navbar-orange navbar-shadow sticky-top py-3">
-    <div class="container">
-      <a class="navbar-brand logo text-white" href="index.html">CRISPY KING</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-            <a class="nav-link btn-nav mx-2" href="index.html">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link btn-nav mx-2" href="menu.html">Menu</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link btn-nav mx-2" href="order-menu.html">Order</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link btn-nav mx-2" href="contact.html">Contact</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link btn-nav mx-2 active" href="delivery-tracker.html">Delivery Tracker</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+  <div id="navbar-container"></div>
 
-  <!-- HERO SECTION -->
-  <section class="hero parallax" style="background: #000;">
-    <div class="container hero-content">
-      <h1 class="hero-title"><span>Track</span> <span>Your</span> <span>Order</span></h1>
-      <p class="hero-subtitle">See your food's journey from kitchen to your door!</p>
-    </div>
-    <div class="hero-overlay"></div>
-  </section>
-  <div class="section-divider"></div>
-
-  <!-- DELIVERY TRACKER SECTION -->
-  <section class="py-5" id="delivery-tracker-section">
+  <!-- TRACKER SECTION -->
+  <section class="py-5">
     <div class="container">
-      <div id="noOrderMsg" style="display:none;">
-        <div class="glass p-5 text-center mb-4">
-          <h2 class="mb-3">No Order to Track</h2>
-          <p class="mb-4">You haven't placed an order yet. Click below to start your order!</p>
-          <a href="order-menu.html" class="btn btn-lg btn-primary">Order Now</a>
-        </div>
-      </div>
-      <div id="orderTrackingContent">
-        <h2 class="text-center mb-4">Delivery Status</h2>
-        <div id="orderDetails"></div>
-        <div class="row justify-content-center">
-          <div class="col-lg-8">
-            <div class="glass p-4 mb-4">
-              <ul class="timeline list-unstyled">
-                <li class="mb-4">
-                  <div class="d-flex align-items-center">
-                    <span class="timeline-icon bg-success me-3"><i class="fas fa-receipt"></i></span>
-                    <div>
-                      <strong>Order Received</strong>
-                      <div class="text-muted small">We got your order!</div>
-                    </div>
-                  </div>
-                </li>
-                <li class="mb-4">
-                  <div class="d-flex align-items-center">
-                    <span class="timeline-icon bg-warning me-3"><i class="fas fa-fire"></i></span>
-                    <div>
-                      <strong>Being Prepared</strong>
-                      <div class="text-muted small">Our chefs are cooking up your food.</div>
-                    </div>
-                  </div>
-                </li>
-                <li class="mb-4">
-                  <div class="d-flex align-items-center">
-                    <span class="timeline-icon bg-info me-3"><i class="fas fa-motorcycle"></i></span>
-                    <div>
-                      <strong>Driver En Route</strong>
-                      <div class="text-muted small">Your order is on the way!</div>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div class="d-flex align-items-center">
-                    <span class="timeline-icon bg-primary me-3"><i class="fas fa-door-open"></i></span>
-                    <div>
-                      <strong>Arriving Soon</strong>
-                      <div class="text-muted small">Get ready to enjoy your meal!</div>
-                    </div>
-                  </div>
-                </li>
-              </ul>
-              <div class="progress my-4" style="height: 18px;">
-                <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">Driver En Route</div>
+      <h2 class="text-center mb-5">Track Your Order</h2>
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="glass p-4 mb-4">
+            <div class="order-status">
+              <div class="progress-track">
+                <ul class="track-list">
+                  <li class="track-item active" id="orderReceived">
+                    <i class="fas fa-receipt"></i>
+                    <span>Order Received</span>
+                    <small class="time" id="receivedTime">12:30 PM</small>
+                  </li>
+                  <li class="track-item" id="preparing">
+                    <i class="fas fa-utensils"></i>
+                    <span>Preparing</span>
+                    <small class="time" id="prepTime">--:--</small>
+                  </li>
+                  <li class="track-item" id="onRoute">
+                    <i class="fas fa-motorcycle"></i>
+                    <span>On Route</span>
+                    <small class="time" id="routeTime">--:--</small>
+                  </li>
+                  <li class="track-item" id="delivered">
+                    <i class="fas fa-home"></i>
+                    <span>Delivered</span>
+                    <small class="time" id="deliveryTime">--:--</small>
+                  </li>
+                </ul>
               </div>
             </div>
           </div>
-        </div>
-        <div class="row justify-content-center">
-          <div class="col-lg-8">
-            <div class="glass p-4">
-              <h4 class="mb-3"><i class="fas fa-map-marker-alt me-2"></i>Live Map</h4>
-              <div class="ratio ratio-16x9 rounded shadow">
-                <iframe src="https://www.google.com/maps?q=London&output=embed" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" style="border-radius:16px;"></iframe>
+          
+          <div class="glass p-4 mb-4">
+            <h4 class="mb-3">Order Details</h4>
+            <div class="order-details">
+              <div class="d-flex justify-content-between mb-2">
+                <strong>Order Number:</strong>
+                <span id="orderNumber">#CK12345</span>
               </div>
-              <div class="text-muted mt-2 small">* Live driver tracking is a demo. Your food is on its way!</div>
+              <div class="d-flex justify-content-between mb-2">
+                <strong>Estimated Delivery:</strong>
+                <span id="estimatedTime">30-45 minutes</span>
+              </div>
+              <div class="d-flex justify-content-between">
+                <strong>Delivery Address:</strong>
+                <span id="deliveryAddress">123 Sample St, London E1</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="glass p-4">
+            <h4 class="mb-3">Need Help?</h4>
+            <p class="mb-3">Having issues with your order? Contact our support team:</p>
+            <div class="d-flex gap-3">
+              <a href="tel:+442071234567" class="btn btn-outline-primary">
+                <i class="fas fa-phone me-2"></i>Call Support
+              </a>
+              <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#chatModal">
+                <i class="fas fa-comments me-2"></i>Live Chat
+              </button>
             </div>
           </div>
         </div>
       </div>
     </div>
   </section>
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      // Check if there's an order in progress
-      const orderInProgress = localStorage.getItem('ck_order_in_progress');
-      const cart = JSON.parse(localStorage.getItem('ck_cart') || '[]');
-      const noOrderMsg = document.getElementById('noOrderMsg');
-      const orderTrackingContent = document.getElementById('orderTrackingContent');
-      const orderDetails = document.getElementById('orderDetails');
-      
-      if (!orderInProgress || cart.length === 0) {
-        noOrderMsg.style.display = 'block';
-        orderTrackingContent.style.display = 'none';
-        
-        // Clear order in progress if cart is empty
-        if (cart.length === 0) {
-          localStorage.removeItem('ck_order_in_progress');
-        }
-      } else {
-        noOrderMsg.style.display = 'none';
-        orderTrackingContent.style.display = 'block';
-        
-        // Update order details
-        const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
-        orderDetails.innerHTML = `
-          <div class="row justify-content-center">
-            <div class="col-lg-8">
-              <div class="glass p-4 mb-4">
-                <h4 class="mb-3">Order Details</h4>
-                <div class="table-responsive">
-                  <table class="table table-sm">
-                    <thead>
-                      <tr>
-                        <th>Item</th>
-                        <th>Quantity</th>
-                        <th class="text-end">Price</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      ${cart.map(item => `
-                        <tr>
-                          <td>${item.name}</td>
-                          <td>${item.qty}</td>
-                          <td class="text-end">£${(item.price * item.qty).toFixed(2)}</td>
-                        </tr>
-                      `).join('')}
-                      <tr class="fw-bold">
-                        <td colspan="2">Total</td>
-                        <td class="text-end">£${total.toFixed(2)}</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
+
+  <!-- Chat Modal -->
+  <div class="modal fade" id="chatModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content glass">
+        <div class="modal-header">
+          <h5 class="modal-title">Live Chat Support</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <div class="chat-messages p-3" id="chatMessages">
+            <div class="message support-message">
+              Hello! How can we help you today?
             </div>
           </div>
-        `;
-      }
-    });
-  </script>
-  
-  <!-- Bootstrap Bundle JS -->
+          <div class="chat-input mt-3">
+            <input type="text" class="form-control" placeholder="Type your message..." id="chatInput">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" onclick="sendMessage()">Send</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer footer-gradient py-5 mt-5">
+    <!-- ... existing footer code ... -->
+  </footer>
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <!-- Custom Scripts -->
-  <script src="js/script.js"></script>
-  <!-- AOS JS -->
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
   <script>
     AOS.init({ duration: 1200, once: true });
+    
+    // Demo tracking simulation
+    setTimeout(() => {
+      document.getElementById('preparing').classList.add('active');
+      document.getElementById('prepTime').textContent = '12:35 PM';
+    }, 3000);
+    
+    setTimeout(() => {
+      document.getElementById('onRoute').classList.add('active');
+      document.getElementById('routeTime').textContent = '12:45 PM';
+    }, 6000);
+    
+    setTimeout(() => {
+      document.getElementById('delivered').classList.add('active');
+      document.getElementById('deliveryTime').textContent = '1:00 PM';
+    }, 9000);
+
+    // Chat functionality
+    function sendMessage() {
+      const input = document.getElementById('chatInput');
+      const messages = document.getElementById('chatMessages');
+      if (input.value.trim()) {
+        messages.innerHTML += `
+          <div class="message user-message">
+            ${input.value}
+          </div>
+        `;
+        input.value = '';
+        // Simulate response
+        setTimeout(() => {
+          messages.innerHTML += `
+            <div class="message support-message">
+              Thanks for your message. An agent will respond shortly.
+            </div>
+          `;
+        }, 1000);
+      }
+    }
+
+    // Handle enter key in chat
+    document.getElementById('chatInput').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        sendMessage();
+      }
+    });
   </script>
 </body>
 </html>

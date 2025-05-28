@@ -1,126 +1,72 @@
 // Cart Management
 let cart = [];
 
+// Initialize services
+const loyalty = new LoyaltyProgram();
+const student = new StudentDiscount();
+
 function initCart() {
     cart = JSON.parse(localStorage.getItem('ck_cart') || '[]');
     updateCart();
 }
 
 function updateCart() {
-    // Update total
-    const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
-    const cartTotalEl = document.getElementById('cartTotal');
-    if (cartTotalEl) cartTotalEl.textContent = total.toFixed(2);
-    
-    // Update cart count
-    const itemCount = cart.reduce((sum, item) => sum + item.qty, 0);
-    const cartCountEl = document.getElementById('cartCount');
-    if (cartCountEl) {
-        cartCountEl.textContent = itemCount || '';
-        cartCountEl.style.display = itemCount ? 'inline' : 'none';
-    }
+    const cart = getCart();
+    let subtotal = 0;
+    let cartHtml = '';
 
-    updateQuantityDisplays();
+    cart.forEach(item => {
+        subtotal += item.price * item.qty;
+        // ... existing cart HTML generation ...
+    });
+
+    // Apply student discount if verified
+    const studentDiscount = student.verified ? subtotal * student.getDiscount() : 0;
+    
+    // Calculate loyalty points to be earned
+    const pointsToEarn = Math.floor(subtotal * 10);
+
+    // Update totals
+    const total = subtotal - studentDiscount;
+    
+    document.getElementById('cartSubtotal').textContent = `£${subtotal.toFixed(2)}`;
+    if (studentDiscount > 0) {
+        document.getElementById('studentDiscountRow').style.display = 'flex';
+        document.getElementById('studentDiscount').textContent = `-£${studentDiscount.toFixed(2)}`;
+    }
+    document.getElementById('cartTotal').textContent = `£${total.toFixed(2)}`;
+    document.getElementById('pointsToEarn').textContent = `+${pointsToEarn} points`;
+
+    // Update loyalty display
+    updateLoyaltyDisplay();
 }
 
-function saveCart() {
-    localStorage.setItem('ck_cart', JSON.stringify(cart));
-    updateCart();
-}
-
-window.addToCart = function(id, name, price, size = null) {
-    cart = JSON.parse(localStorage.getItem('ck_cart') || '[]');
-    const itemKey = size ? `${id}_${size}` : id;
-    const itemName = size ? `${name} (${size})` : name;
-    price = parseFloat(price); // Ensure price is a number
+function updateLoyaltyDisplay() {
+    const tierProgress = (loyalty.points / (loyalty.tier === 'Bronze' ? 500 : 1000)) * 100;
+    document.getElementById('loyaltyTier').textContent = loyalty.tier;
+    document.getElementById('pointsBalance').textContent = loyalty.points;
+    document.getElementById('tierProgress').style.width = `${Math.min(tierProgress, 100)}%`;
     
-    const existingItem = cart.find(item => item.key === itemKey);
-    if (existingItem) {
-        existingItem.qty++;
-    } else {
-        cart.push({
-            key: itemKey,
-            id: id,
-            name: itemName,
-            price: price,
-            size: size,
-            qty: 1
-        });
+    const pointsToNext = loyalty.getPointsToNextTier();
+    if (pointsToNext > 0) {
+        document.getElementById('nextTierInfo').textContent = 
+            `${pointsToNext} points to ${loyalty.tier === 'Bronze' ? 'Silver' : 'Gold'} tier`;
+    } else if (loyalty.tier === 'Gold') {
+        document.getElementById('nextTierInfo').textContent = 'Maximum tier reached!';
     }
-    
-    saveCart();
-    if (window.updateMenu) {
-        window.updateMenu(); // Use updateMenu instead of full renderTabs
-    }
-};
 
-window.removeFromCart = function(id, size = null) {
-    cart = JSON.parse(localStorage.getItem('ck_cart') || '[]');
-    const itemKey = size ? `${id}_${size}` : id;
-    const itemIndex = cart.findIndex(item => item.key === itemKey);
-    
-    if (itemIndex > -1) {
-        if (cart[itemIndex].qty > 1) {
-            cart[itemIndex].qty--;
-        } else {
-            cart.splice(itemIndex, 1);
-        }
-        
-        saveCart();
-        if (window.renderTabs) {
-            renderTabs();
-        }
-    }
-};
-
-function getItemQuantity(id, size = null) {
-    const itemKey = size ? `${id}_${size}` : id;
-    const item = cart.find(item => item.key === itemKey);
-    return item ? item.qty : 0;
-}
-
-function renderQuantityControls() {
-    document.querySelectorAll('.menu-card').forEach(card => {
-        const name = card.querySelector('h5').textContent;
-        const priceEl = card.querySelector('.price');
-        const price = parseFloat(priceEl.textContent.replace('£', ''));
-        
-        // Create quantity controls if they don't exist
-        if (!card.querySelector('.quantity-controls')) {
-            const controls = document.createElement('div');
-            controls.className = 'quantity-controls';
-            controls.innerHTML = `
-                <button class="quantity-btn minus" aria-label="Decrease quantity">-</button>
-                <span class="quantity-display">0</span>
-                <button class="quantity-btn plus" aria-label="Increase quantity">+</button>
-            `;
-            card.appendChild(controls);
-
-            const quantityDisplay = controls.querySelector('.quantity-display');
-            const plusBtn = controls.querySelector('.plus');
-            const minusBtn = controls.querySelector('.minus');
-
-            // Update initial quantity
-            const itemKey = name;
-            const currentQty = cart.find(item => item.key === itemKey)?.qty || 0;
-            quantityDisplay.textContent = currentQty;
-
-            // Handle plus button click
-            plusBtn.addEventListener('click', (e) => {
-                e.stopPropagation(); // Prevent card click
-                window.addToCart(name, name, price);
-                const newQty = cart.find(item => item.key === itemKey)?.qty || 0;
-                quantityDisplay.textContent = newQty;
-            });
-
-            // Handle minus button click
-            minusBtn.addEventListener('click', (e) => {
-                e.stopPropagation(); // Prevent card click
-                window.removeFromCart(name);
-                const newQty = cart.find(item => item.key === itemKey)?.qty || 0;
-                quantityDisplay.textContent = newQty;
-            });
-        }
+    // Update available rewards
+    const rewardsList = document.getElementById('rewardsList');
+    rewardsList.innerHTML = '';
+    loyalty.getAvailableRewards().forEach(reward => {
+        rewardsList.innerHTML += `
+            <li>
+                <div class="reward-item">
+                    <span>${reward.reward}</span>
+                    <span class="reward-points">${reward.points}pts</span>
+                </div>
+            </li>
+        `;
     });
 }
 
@@ -139,20 +85,34 @@ function updateQuantityDisplays() {
 
 // Extend existing updateCart function
 function updateCart() {
-    // Update total
-    const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
-    const cartTotalEl = document.getElementById('cartTotal');
-    if (cartTotalEl) cartTotalEl.textContent = total.toFixed(2);
-    
-    // Update cart count
-    const itemCount = cart.reduce((sum, item) => sum + item.qty, 0);
-    const cartCountEl = document.getElementById('cartCount');
-    if (cartCountEl) {
-        cartCountEl.textContent = itemCount || '';
-        cartCountEl.style.display = itemCount ? 'inline' : 'none';
-    }
+    const cart = getCart();
+    let subtotal = 0;
+    let cartHtml = '';
 
-    updateQuantityDisplays();
+    cart.forEach(item => {
+        subtotal += item.price * item.qty;
+        // ... existing cart HTML generation ...
+    });
+
+    // Apply student discount if verified
+    const studentDiscount = student.verified ? subtotal * student.getDiscount() : 0;
+    
+    // Calculate loyalty points to be earned
+    const pointsToEarn = Math.floor(subtotal * 10);
+
+    // Update totals
+    const total = subtotal - studentDiscount;
+    
+    document.getElementById('cartSubtotal').textContent = `£${subtotal.toFixed(2)}`;
+    if (studentDiscount > 0) {
+        document.getElementById('studentDiscountRow').style.display = 'flex';
+        document.getElementById('studentDiscount').textContent = `-£${studentDiscount.toFixed(2)}`;
+    }
+    document.getElementById('cartTotal').textContent = `£${total.toFixed(2)}`;
+    document.getElementById('pointsToEarn').textContent = `+${pointsToEarn} points`;
+
+    // Update loyalty display
+    updateLoyaltyDisplay();
 }
 
 // Export functions for use in other files
@@ -302,5 +262,20 @@ document.addEventListener('DOMContentLoaded', function() {
         const itemCount = cart.reduce((sum, item) => sum + item.qty, 0);
         cartCount.textContent = itemCount || '';
         cartCount.style.display = itemCount ? 'inline' : 'none';
+    }
+});
+
+// Handle student verification
+document.getElementById('studentForm')?.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const email = document.getElementById('studentEmail').value;
+    const verified = await student.verifyStudent(email);
+    
+    if (verified) {
+        document.getElementById('studentVerification').style.display = 'none';
+        document.getElementById('verifiedStudent').style.display = 'block';
+        updateCart();
+    } else {
+        alert('Please use a valid student email (.ac.uk or .edu)');
     }
 });
