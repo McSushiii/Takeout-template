@@ -5,11 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Order Menu | CRISPY KING</title>
   <meta name="description" content="Select your food and build your order at Crispy King.">
-  <link rel="icon" href="../images/chicken1.jpg" type="image/jpeg">
-  <link rel="stylesheet" href="https://fon                content += `<div class='col-md-4 mb-4'><div class='menu-card glass text-center h-100 d-flex flex-column justify-content-between'><img src='../images/${imgFile}' alt='${item.name}' class='menu-img'><h5>${item.name}</h5><span class='price'>£${item.price.toFixed(2)}</span><div class='d-flex justify-content-center align-items-center mb-2'><button class='btn btn-sm btn-outline-primary ms-2' onclick='addToCart(${item.id},"${item.name}",${item.price})'>+</button><span class='mx-2' data-qty-id="${item.id}">${qty}</span><button class='btn btn-sm btn-outline-danger' onclick='removeFromCart(${item.id})'>-</button></div></div></div>`;s.googleapis.com/css2?family=Poppins:wght@700;900&family=Open+Sans:wght@400;600&display=swap">
+  <link rel="icon" href="images/chicken1.jpg" type="image/jpeg">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;900&family=Open+Sans:wght@400;600&display=swap">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bangers&display=swap">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
   <style>
@@ -48,6 +48,89 @@
       color: #fff !important;
       border-radius: 50px;
     }
+    /* Add to cart feedback styles */
+    .add-to-cart-feedback {
+      z-index: 2100;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      font-weight: 600;
+    }
+    /* Menu card hover effect */
+    .menu-card {
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .menu-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+    /* Loading overlay */
+    .loading-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(255,255,255,0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 15px;
+    }
+    .menu-card {
+      position: relative;
+    }
+    /* Quantity controls */
+    .quantity-controls {
+      display: none;
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(255,255,255,0.95);
+      padding: 5px;
+      border-radius: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .menu-card:hover .quantity-controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .quantity-btn {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      border: none;
+      background: var(--primary);
+      color: white;
+      font-size: 18px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s;
+    }
+    .quantity-btn:hover {
+      transform: scale(1.1);
+    }
+    .quantity-display {
+      font-weight: 600;
+      min-width: 30px;
+      text-align: center;
+    }
+    /* Mobile optimizations */
+    @media (max-width: 768px) {
+      .quantity-controls {
+        display: flex;
+        position: static;
+        transform: none;
+        margin-top: 10px;
+        justify-content: center;
+      }
+      .menu-card {
+        padding-bottom: 15px;
+      }
+    }
   </style>
 </head>
 <body class="bg-white text-dark">
@@ -62,7 +145,7 @@
         <ul class="navbar-nav ms-auto">
           <li class="nav-item"><a class="nav-link btn-nav mx-2" href="index.html">Home</a></li>
           <li class="nav-item"><a class="nav-link btn-nav mx-2" href="menu.html">Menu</a></li>
-          <li class="nav-item"><a class="nav-link btn-nav mx-2 active" href="order-menu.html">Order</a></li>
+          <li class="nav-item"><a class="nav-link btn-nav mx-2 active" href="order-menu.html">Order <span class="badge bg-warning text-dark" id="cartCount">0</span></a></li>
           <li class="nav-item"><a class="nav-link btn-nav mx-2" href="contact.html">Contact</a></li>
           <li class="nav-item"><a class="nav-link btn-nav mx-2" href="delivery-tracker.html">Delivery Tracker</a></li>
         </ul>
@@ -211,10 +294,11 @@
     </div>
   </footer>
 
+  <!-- Bootstrap Bundle JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-  <script src="../js/cart.js"></script>
-  <script src="../js/script.js"></script>
+  <!-- Cart and Main Scripts -->
+  <script src="js/cart.js"></script>
+  <script src="js/script.js"></script>
   <script>
     AOS.init({ duration: 1200, once: true });
 
@@ -413,7 +497,7 @@
             else if(item.name === '4 BBQ lamb ribs') imgFile = '4bbqlambribs.jpg';
             
             const qty = getQty(item.id);
-            content += `<div class='col-md-4 mb-4'><div class='menu-card glass text-center h-100 d-flex flex-column justify-content-between'>${imgFile?`<img src='images/${imgFile}' alt='${item.name}' class='menu-img mb-2'>`:''}<h5>${item.name}</h5>${item.desc?`<p>${item.desc}</p>`:''}<span class='price'>£${item.price.toFixed(2)}</span><div class='d-flex justify-content-center align-items-center mb-2'><button class='btn btn-sm btn-outline-primary ms-2' onclick='addToCart(${item.id},"${item.name}",${item.price})'>+</button><span class='mx-2' data-qty-id="${item.id}">${qty}</span><button class='btn btn-sm btn-outline-danger' onclick='removeFromCart(${item.id})'>-</button></div></div></div>`;
+            content += `<div class='col-md-4 mb-4'><div class='menu-card glass text-center h-100 d-flex flex-column justify-content-between'>${imgFile?`<img src='../images/${imgFile}' alt='${item.name}' class='menu-img mb-2'>`:''}<h5>${item.name}</h5>${item.desc?`<p>${item.desc}</p>`:''}<span class='price'>£${item.price.toFixed(2)}</span><div class='d-flex justify-content-center align-items-center mb-2'><button class='btn btn-sm btn-outline-primary ms-2' onclick='addToCart(${item.id},"${item.name}",${item.price})'>+</button><span class='mx-2' data-qty-id="${item.id}">${qty}</span><button class='btn btn-sm btn-outline-danger' onclick='removeFromCart(${item.id})'>-</button></div></div></div>`;
           });
         }
         tabContent.innerHTML += `<div class="tab-pane fade${isActive?' show active':''}" id="${cat.key.replace(/\s/g,'')}" role="tabpanel"><div class="row justify-content-center">${content}</div></div>`;
@@ -427,7 +511,7 @@
     }
 
     document.addEventListener('DOMContentLoaded', function() {
-      // Get active tab from URL hash or localStorage
+      // Get active tab from window.location.hash or localStorage
       const hash = window.location.hash;
       if (hash) {
         activeTab = categories.find(c => c.key.replace(/\s/g,'') === hash.substring(1))?.key || 'Burgers';
